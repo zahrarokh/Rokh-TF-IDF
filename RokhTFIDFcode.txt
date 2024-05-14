@@ -1,0 +1,23 @@
+﻿from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.pipeline import Pipeline
+
+#Enter your corpus here
+corpusGLS = [
+    "The Mercedes-Benz GLS 600 epitomizes luxury and sophistication in the realm of SUVs, seamlessly blending cutting-edge technology with unparalleled comfort and performance. As the flagship model of the Mercedes-Benz SUV lineup, the GLS 600 sets new standards in automotive excellence, offering a driving experience that is as exhilarating as it is refined.",
+    "At the heart of the GLS 600 lies a formidable powertrain that effortlessly combines performance with efficiency. Powered by a handcrafted 4.0-liter V8 biturbo engine, meticulously engineered by the expert craftsmen at Mercedes-AMG, the GLS 600 delivers an impressive 550 horsepower and 538 lb-ft of torque. Paired with an integrated EQ Boost mild hybrid system, this powerhouse of an engine propels the GLS 600 from 0 to 60 mph in just 4.8 seconds, ensuring exhilarating acceleration and effortless cruising on the open road.",
+    "Complementing its formidable performance capabilities, the GLS 600 boasts a meticulously crafted interior that redefines the concept of luxury. Step inside, and you are greeted by a sanctuary of opulence, where every surface exudes elegance and refinement. From the hand-finished wood trim to the sumptuous leather upholstery, every detail has been carefully curated to create an ambiance of unparalleled comfort and sophistication.",
+    "The GLS 600's interior is not only a feast for the senses but also a showcase of technological innovation. At the center of it all is the MBUX infotainment system, which seamlessly integrates intuitive voice commands, touch controls, and gesture recognition to create a truly immersive driving experience. With features like augmented reality navigation, customizable ambient lighting, and a panoramic sunroof, the GLS 600 ensures that every journey is as enjoyable for passengers as it is for the driver.",
+    "But perhaps the most impressive feature of the GLS 600 is its unrivaled attention to passenger comfort and convenience. With seating for up to seven passengers across three rows, including available executive seating with massaging and reclining functions, the GLS 600 redefines the concept of first-class travel. Add to that features like heated and ventilated seats, a Burmester® 3D surround sound system, and a suite of driver assistance technologies, and you have a vehicle that elevates the art of luxury travel to new heights.",
+]
+
+#Enter your selcted words to calculate their TF-IDF score
+vocabulary = ['gls', 'benz', 'suv', 'of', 'with']
+
+pipe = Pipeline([('count', CountVectorizer(vocabulary=vocabulary)), ('tfID', TfidfTransformer())]).fit(corpusGLS)
+
+
+pipe['count'].transform(corpusGLS).toarray()
+
+#printing TF-IDF scores
+pipe['tfID'].idf_
