@@ -6,8 +6,11 @@
 package manager: pip
 
 pip install jupyterlab
+
 pip install notebook
+
 pip install -U scikit-learn
+
 
 jupyter notebook
 
